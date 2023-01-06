@@ -6,34 +6,11 @@
 /*   By: pszleper < pszleper@student.42.fr >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 05:51:13 by pszleper          #+#    #+#             */
-/*   Updated: 2023/01/06 01:54:14 by pszleper         ###   ########.fr       */
+/*   Updated: 2023/01/06 06:32:40 by pszleper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-void	ft_free(t_philo *philo_ptr)
-{
-	t_philo	*current_philo;
-
-	pthread_mutex_unlock(philo_ptr->funeral);
-	pthread_mutex_destroy(philo_ptr->funeral);
-	free(philo_ptr->funeral);
-	pthread_mutex_destroy(philo_ptr->done_eating);
-	free(philo_ptr->done_eating);
-	free(philo_ptr->time);
-	while (philo_ptr)
-	{
-		pthread_join(*philo_ptr->tid, 0);
-		current_philo = philo_ptr;
-		pthread_mutex_destroy(philo_ptr->fork_r);
-		free(philo_ptr->fork_r);
-		free(philo_ptr->tid);
-		free(philo_ptr->last_eat);
-		philo_ptr = philo_ptr->next;
-		free(current_philo);
-	}
-}
 
 int	ft_atoi(char *str)
 {
@@ -64,6 +41,9 @@ int	ft_atoi(char *str)
 	return (mod * i);
 }
 
+/*
+  this function extracts the number of milliseconds from the timeval struct
+*/
 long	ft_time(struct timeval *time)
 {
 	long			milliseconds;
@@ -76,6 +56,9 @@ long	ft_time(struct timeval *time)
 	return (milliseconds);
 }
 
+/*
+  this function sleeps until i milliseconds 
+*/
 void	ft_sleep(int i)
 {
 	struct timeval	tmp;
@@ -86,11 +69,15 @@ void	ft_sleep(int i)
 	j = 0;
 	while (j < i)
 	{
-		usleep(200);
+		usleep(5);
 		j = ft_time(&tmp);
 	}
 }
 
+/*
+  This function prints according to the format, and won't print after
+  a philosopher has died
+*/
 void	ft_printf(char *str, t_philo *data)
 {
 	long	i;
@@ -104,4 +91,26 @@ void	ft_printf(char *str, t_philo *data)
 	}
 	printf("%lu %i %s\n", i, data->index, str);
 	pthread_mutex_unlock(data->funeral);
+}
+
+void	ft_free(t_philo *philo_ptr)
+{
+	t_philo	*current_philo;
+
+	pthread_mutex_destroy(philo_ptr->funeral);
+	free(philo_ptr->funeral);
+	pthread_mutex_destroy(philo_ptr->done_eating);
+	free(philo_ptr->done_eating);
+	free(philo_ptr->time);
+	while (philo_ptr)
+	{
+		pthread_join(*philo_ptr->tid, 0);
+		current_philo = philo_ptr;
+		pthread_mutex_destroy(philo_ptr->fork_r);
+		free(philo_ptr->fork_r);
+		free(philo_ptr->tid);
+		free(philo_ptr->last_eat);
+		philo_ptr = philo_ptr->next;
+		free(current_philo);
+	}
 }
