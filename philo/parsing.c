@@ -6,47 +6,11 @@
 /*   By: pszleper < pszleper@student.42.fr >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 02:00:44 by pszleper          #+#    #+#             */
-/*   Updated: 2023/01/06 12:24:29 by pszleper         ###   ########.fr       */
+/*   Updated: 2023/01/06 13:27:41 by pszleper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-/*
-  This function checks the arguments
-  It checks if the numbers are positive, if there's at least one philosopher
-  and if the number of meals is at least one
-  The function also handles the cases of there being only one philosopher
-  and when time_to_die is 0
-  It returns the number of philosophers as an int
-*/
-int	ft_check_args(int argc, char **argv)
-{
-	if (ft_atoi(argv[1]) < 1 || ft_atoi(argv[2]) < 0 || ft_atoi(argv[3]) < 0
-		|| ft_atoi(argv[4]) < 0)
-	{
-		printf("Invalid input parameters\n");
-		return (PHILO_ERROR);
-	}
-	if (argc == 6 && ft_atoi(argv[5]) < 1)
-	{
-		printf("Invalid number of meals\n");
-		return (PHILO_ERROR);
-	}
-	if (ft_atoi(argv[1]) > 0 && ft_atoi(argv[2]) == 0)
-	{
-		printf("0 1 died\n");
-		return (0);
-	}
-	if (ft_atoi(argv[1]) == 1)
-	{
-		printf("0 1 has taken a fork\n");
-		usleep(ft_atoi(argv[2]) * 1000);
-		printf("%i 1 died\n", ft_atoi(argv[2]));
-		return (0);
-	}
-	return (ft_atoi(argv[1]));
-}
 
 /*
   This function iterates through philosophers and keeps initializing values
@@ -98,7 +62,7 @@ int	ft_part_one(t_philo *philo, int k)
 			return (1);
 		if (k == i)
 			break ;
-		tmp = malloc(sizeof(t_philo) * 1);
+		tmp = malloc(sizeof(t_philo));
 		if (!tmp)
 			return (1);
 		philo->next = tmp;
@@ -118,7 +82,6 @@ int	ft_part_one(t_philo *philo, int k)
   and that we can stop the program
   Without the funeral mutex some messages would still be printed out
   after the first death
-
 */
 int	ft_part_three(t_philo *philo)
 {
@@ -148,10 +111,8 @@ t_philo	*ft_parse(int argc, char **argv)
 	int		k;
 	t_philo	*philo;
 
-	k = ft_check_args(argc, argv);
-	if (k < 1)
-		return (NULL);
-	philo = malloc(sizeof(t_philo) * 1);
+	k = ft_atoi(argv[1]);
+	philo = malloc(sizeof(t_philo));
 	if (!philo)
 		return (NULL);
 	if (ft_part_one(philo, k))

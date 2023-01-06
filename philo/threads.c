@@ -6,7 +6,7 @@
 /*   By: pszleper < pszleper@student.42.fr >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 05:51:11 by pszleper          #+#    #+#             */
-/*   Updated: 2023/01/06 12:25:10 by pszleper         ###   ########.fr       */
+/*   Updated: 2023/01/06 13:27:57 by pszleper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void	ft_create_philo(t_philo *philo, int	*done)
 	t_philo			*tmp;
 	struct timeval	*time1;
 
-	time1 = malloc(sizeof(struct timeval) * 1);
+	time1 = malloc(sizeof(struct timeval));
 	if (!time1 || gettimeofday(time1, 0) == -1)
 		return ;
 	tmp = philo;
@@ -123,10 +123,10 @@ void	ft_create_philo(t_philo *philo, int	*done)
 	{
 		tmp->done = done;
 		tmp->time = time1;
-		tmp->last_eat = malloc(sizeof(struct timeval) * 1);
+		tmp->last_eat = malloc(sizeof(struct timeval));
 		if (!tmp->last_eat || gettimeofday(tmp->last_eat, 0) == -1)
 			return ;
-		tmp->tid = malloc(sizeof(pthread_t) * 1);
+		tmp->tid = malloc(sizeof(pthread_t));
 		if (!tmp->tid)
 			return ;
 		if (pthread_create(tmp->tid, 0, (void *)&ft_odd_even, (void *)tmp))
