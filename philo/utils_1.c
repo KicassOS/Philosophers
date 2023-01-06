@@ -6,7 +6,7 @@
 /*   By: pszleper < pszleper@student.42.fr >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 05:51:13 by pszleper          #+#    #+#             */
-/*   Updated: 2023/01/06 06:32:40 by pszleper         ###   ########.fr       */
+/*   Updated: 2023/01/06 10:27:42 by pszleper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,19 +78,19 @@ void	ft_sleep(int i)
   This function prints according to the format, and won't print after
   a philosopher has died
 */
-void	ft_printf(char *str, t_philo *data)
+void	ft_printf(char *str, t_philo *philo)
 {
 	long	i;
 
-	pthread_mutex_lock(data->funeral);
-	i = ft_time(data->time);
-	if (*data->died)
+	pthread_mutex_lock(philo->funeral);
+	i = ft_time(philo->time);
+	if (*philo->died)
 	{
-		pthread_mutex_unlock(data->funeral);
+		pthread_mutex_unlock(philo->funeral);
 		return ;
 	}
-	printf("%lu %i %s\n", i, data->index, str);
-	pthread_mutex_unlock(data->funeral);
+	printf("%lu %i %s\n", i, philo->index, str);
+	pthread_mutex_unlock(philo->funeral);
 }
 
 void	ft_free(t_philo *philo_ptr)

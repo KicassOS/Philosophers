@@ -6,7 +6,7 @@
 /*   By: pszleper < pszleper@student.42.fr >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 06:35:30 by pszleper          #+#    #+#             */
-/*   Updated: 2023/01/06 06:31:33 by pszleper         ###   ########.fr       */
+/*   Updated: 2023/01/06 10:27:24 by pszleper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,18 @@ void	ft_free(t_philo *philo_ptr);
 int		ft_atoi(char *str);
 long	ft_time(struct timeval *time);
 void	ft_sleep(int i);
-void	ft_printf(char *str, t_philo *data);
+void	ft_printf(char *str, t_philo *philo);
 void	ft_death(t_philo *philo);
 
 int		ft_check_args(int argc, char **argv);
-int		ft_part_two(int argc, char **argv, t_philo *data);
-int		ft_part_one(t_philo *data, int k, int *died);
-int		ft_part_three(t_philo *data);
+int		ft_part_two(int argc, char **argv, t_philo *philo);
+int		ft_part_one(t_philo *philo, int k, int *died);
+int		ft_part_three(t_philo *philo);
 t_philo	*ft_parse(int argc, char **argv, int *died);
 
-void	ft_eat(t_philo *data);
-void	ft_must_eat(t_philo *data);
-void	ft_eat_forever(t_philo *data);
-void	ft_odd_even(t_philo *data);
-void	ft_create_philo(t_philo *data, int	*done);
+void	ft_eat(t_philo *philo);
+void	ft_must_eat(t_philo *philo);
+void	ft_eat_forever(t_philo *philo);
+void	ft_odd_even(t_philo *philo);
+void	ft_create_philo(t_philo *philo, int	*done);
 #endif
