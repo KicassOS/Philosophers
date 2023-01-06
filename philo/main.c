@@ -6,7 +6,7 @@
 /*   By: pszleper < pszleper@student.42.fr >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 06:36:19 by pszleper          #+#    #+#             */
-/*   Updated: 2023/01/06 05:24:29 by pszleper         ###   ########.fr       */
+/*   Updated: 2023/01/06 12:23:27 by pszleper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	ft_print_instructions(void)
 int	main(int argc, char **argv)
 {
 	t_philo	*philo;
-	int		died;
 	int		done;
 
 	if (argc != 5 && argc != 6)
@@ -30,9 +29,8 @@ int	main(int argc, char **argv)
 		ft_print_instructions();
 		return (PHILO_ERROR);
 	}
-	died = 0;
 	done = 0;
-	philo = ft_parse(argc, argv, &died);
+	philo = ft_parse(argc, argv);
 	if (philo == NULL)
 		return (PHILO_ERROR);
 	ft_create_philo(philo, &done);

@@ -6,7 +6,7 @@
 /*   By: pszleper < pszleper@student.42.fr >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 05:51:13 by pszleper          #+#    #+#             */
-/*   Updated: 2023/01/06 10:27:42 by pszleper         ###   ########.fr       */
+/*   Updated: 2023/01/06 12:25:15 by pszleper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	ft_printf(char *str, t_philo *philo)
 
 	pthread_mutex_lock(philo->funeral);
 	i = ft_time(philo->time);
-	if (*philo->died)
+	if (philo->died)
 	{
 		pthread_mutex_unlock(philo->funeral);
 		return ;
