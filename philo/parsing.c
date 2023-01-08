@@ -6,7 +6,7 @@
 /*   By: pszleper < pszleper@student.42.fr >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 02:00:44 by pszleper          #+#    #+#             */
-/*   Updated: 2023/01/06 13:27:41 by pszleper         ###   ########.fr       */
+/*   Updated: 2023/01/08 04:11:08 by pszleper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	ft_part_two(int argc, char **argv, t_philo *philo)
   It assigns it as a right fork to all, but that will be fixed
   in ft_part_two
 */
-int	ft_part_one(t_philo *philo, int k)
+int	ft_part_one(t_philo *philo, int k, int *died)
 {
 	t_philo	*tmp;
 	int		i;
@@ -54,7 +54,7 @@ int	ft_part_one(t_philo *philo, int k)
 	while (k > i++)
 	{
 		philo->total_philo = k;
-		philo->died = 0;
+		philo->died = died;
 		philo->index = i;
 		philo->next = NULL;
 		philo->fork_r = malloc(sizeof(pthread_mutex_t));
@@ -106,7 +106,7 @@ int	ft_part_three(t_philo *philo)
 /*
 	This function handles the parsing and returns the list of philosophers
 */
-t_philo	*ft_parse(int argc, char **argv)
+t_philo	*ft_parse(int argc, char **argv, int *died)
 {
 	int		k;
 	t_philo	*philo;
@@ -115,7 +115,7 @@ t_philo	*ft_parse(int argc, char **argv)
 	philo = malloc(sizeof(t_philo));
 	if (!philo)
 		return (NULL);
-	if (ft_part_one(philo, k))
+	if (ft_part_one(philo, k, died))
 	{
 		ft_free(philo);
 		return (NULL);

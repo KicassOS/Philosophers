@@ -6,7 +6,7 @@
 /*   By: pszleper < pszleper@student.42.fr >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 05:51:11 by pszleper          #+#    #+#             */
-/*   Updated: 2023/01/06 13:27:57 by pszleper         ###   ########.fr       */
+/*   Updated: 2023/01/08 04:11:25 by pszleper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 */
 void	ft_eat(t_philo *philo)
 {
-	if (philo->died)
+	if (*philo->died)
 		return ;
 	pthread_mutex_lock(philo->fork_r);
 	ft_printf("has taken a fork", philo);
-	if (philo->died)
+	if (*philo->died)
 	{
 		pthread_mutex_unlock(philo->fork_r);
 		return ;
@@ -32,7 +32,7 @@ void	ft_eat(t_philo *philo)
 	ft_printf("has taken a fork", philo);
 	if (gettimeofday(philo->last_eat, 0))
 		return ;
-	if (philo->died)
+	if (*philo->died)
 	{
 		pthread_mutex_unlock(philo->fork_l);
 		pthread_mutex_unlock(philo->fork_r);
@@ -55,7 +55,7 @@ void	ft_meal_nb(t_philo *philo)
 	while (philo->meal_nb)
 	{
 		ft_eat(philo);
-		if (philo->died)
+		if (*philo->died)
 			return ;
 		philo->meal_nb--;
 		if (philo->meal_nb == 0)
@@ -78,11 +78,11 @@ void	ft_meal_nb(t_philo *philo)
 */
 void	ft_eat_forever(t_philo *philo)
 {
-	while (philo->died == 0)
+	while (*philo->died == 0)
 	{
 		ft_eat(philo);
 		ft_printf("is sleeping", philo);
-		if (philo->died)
+		if (*philo->died)
 			return ;
 		ft_sleep(philo->sleep_time);
 		ft_printf("is thinking", philo);

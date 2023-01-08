@@ -6,7 +6,7 @@
 /*   By: pszleper < pszleper@student.42.fr >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 06:35:30 by pszleper          #+#    #+#             */
-/*   Updated: 2023/01/06 12:41:56 by pszleper         ###   ########.fr       */
+/*   Updated: 2023/01/08 04:11:16 by pszleper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_philo
 	int				eat_time;
 	int				sleep_time;
 	int				meal_nb;
-	int				died;
+	int				*died;
 	int				*done;
 }					t_philo;
 
@@ -50,9 +50,9 @@ void	ft_death(t_philo *philo);
 
 int		ft_check_args(int argc, char **argv);
 int		ft_part_two(int argc, char **argv, t_philo *philo);
-int		ft_part_one(t_philo *philo, int k);
+int		ft_part_one(t_philo *philo, int k, int *died);
 int		ft_part_three(t_philo *philo);
-t_philo	*ft_parse(int argc, char **argv);
+t_philo	*ft_parse(int argc, char **argv, int *died);
 
 void	ft_eat(t_philo *philo);
 void	ft_must_eat(t_philo *philo);

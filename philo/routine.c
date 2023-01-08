@@ -6,7 +6,7 @@
 /*   By: pszleper < pszleper@student.42.fr >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 05:51:08 by pszleper          #+#    #+#             */
-/*   Updated: 2023/01/06 12:24:41 by pszleper         ###   ########.fr       */
+/*   Updated: 2023/01/06 06:14:40 by pszleper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_death(t_philo *philo)
 		j = ft_time(philo->last_eat);
 		if (j >= philo->death_time)
 		{
-			philo->died = 1;
+			*philo->died = 1;
 			i = ft_time(philo->time);
 			printf("%lu %i died\n", i, philo->index);
 			return ;
