@@ -6,7 +6,7 @@
 /*   By: pszleper < pszleper@student.42.fr >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 05:51:11 by pszleper          #+#    #+#             */
-/*   Updated: 2023/01/08 04:11:25 by pszleper         ###   ########.fr       */
+/*   Updated: 2023/01/09 03:35:58 by pszleper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,5 +133,5 @@ void	ft_create_philo(t_philo *philo, int	*done)
 			return ;
 		tmp = tmp->next;
 	}
-	ft_death(philo);
+	ft_loop(philo);
 }

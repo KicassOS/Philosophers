@@ -6,7 +6,7 @@
 /*   By: pszleper < pszleper@student.42.fr >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 05:51:13 by pszleper          #+#    #+#             */
-/*   Updated: 2023/01/06 10:27:42 by pszleper         ###   ########.fr       */
+/*   Updated: 2023/01/09 05:13:46 by pszleper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,21 +57,12 @@ long	ft_time(struct timeval *time)
 }
 
 /*
-  this function sleeps until i milliseconds 
+  this function makes the philosopher thread stop for i milliseconds
+
 */
 void	ft_sleep(int i)
 {
-	struct timeval	tmp;
-	int				j;
-
-	if (gettimeofday(&tmp, 0) == -1)
-		return ;
-	j = 0;
-	while (j < i)
-	{
-		usleep(5);
-		j = ft_time(&tmp);
-	}
+	usleep(i * 1000);
 }
 
 /*
@@ -104,7 +95,6 @@ void	ft_free(t_philo *philo_ptr)
 	free(philo_ptr->time);
 	while (philo_ptr)
 	{
-		pthread_join(*philo_ptr->tid, 0);
 		current_philo = philo_ptr;
 		pthread_mutex_destroy(philo_ptr->fork_r);
 		free(philo_ptr->fork_r);

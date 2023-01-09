@@ -6,7 +6,7 @@
 /*   By: pszleper < pszleper@student.42.fr >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 06:36:19 by pszleper          #+#    #+#             */
-/*   Updated: 2023/01/08 04:09:57 by pszleper         ###   ########.fr       */
+/*   Updated: 2023/01/09 02:06:59 by pszleper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,11 @@ int	main(int argc, char **argv)
 	if (philo == NULL)
 		return (PHILO_ERROR);
 	ft_create_philo(philo, &done);
+	if (!ft_join_all_threads(philo))
+	{
+		ft_free(philo);
+		return (PHILO_ERROR);
+	}
 	ft_free(philo);
 	return (EXIT_SUCCESS);
 }

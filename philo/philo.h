@@ -6,7 +6,7 @@
 /*   By: pszleper < pszleper@student.42.fr >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 06:35:30 by pszleper          #+#    #+#             */
-/*   Updated: 2023/01/08 04:11:16 by pszleper         ###   ########.fr       */
+/*   Updated: 2023/01/09 05:12:16 by pszleper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,10 @@ int		ft_atoi(char *str);
 long	ft_time(struct timeval *time);
 void	ft_sleep(int i);
 void	ft_printf(char *str, t_philo *philo);
-void	ft_death(t_philo *philo);
+
+int		ft_join_all_threads(t_philo *philo_ptr);
+
+void	ft_loop(t_philo *philo);
 
 int		ft_check_args(int argc, char **argv);
 int		ft_part_two(int argc, char **argv, t_philo *philo);

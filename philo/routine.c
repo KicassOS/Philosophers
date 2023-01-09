@@ -6,7 +6,7 @@
 /*   By: pszleper < pszleper@student.42.fr >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 05:51:08 by pszleper          #+#    #+#             */
-/*   Updated: 2023/01/06 06:14:40 by pszleper         ###   ########.fr       */
+/*   Updated: 2023/01/09 02:16:39 by pszleper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
   if the former is bigger than the latter, then our philosopher died.
   The funeral mutex gets locked, message gets printed and program ends.
 */
-void	ft_death(t_philo *philo)
+void	ft_loop(t_philo *philo)
 {
 	t_philo	*temp;
 	int		j;

@@ -4,3 +4,4 @@ philo/philo
 */*.o
 */*.h.gch
 .vscode
+42-philosophers-tester
