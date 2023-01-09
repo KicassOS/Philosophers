@@ -6,7 +6,7 @@
 #    By: pszleper < pszleper@student.42.fr >        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 22:05:16 by pszleper          #+#    #+#              #
-#    Updated: 2023/01/09 02:15:51 by pszleper         ###   ########.fr        #
+#    Updated: 2023/01/09 09:49:46 by pszleper         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ NAME = philo/philo
 SRC_DIR = philo/
 
 SRC = $(addprefix $(SRC_DIR), main.c parsing.c routine.c threads.c utils_1.c \
-							  utils_2.c)
+							  utils_2.c utils_3.c)
 
 OBJ = $(SRC:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: pszleper < pszleper@student.42.fr >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 06:36:19 by pszleper          #+#    #+#             */
-/*   Updated: 2023/01/09 02:06:59 by pszleper         ###   ########.fr       */
+/*   Updated: 2023/01/09 08:26:30 by pszleper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	main(int argc, char **argv)
 		return (PHILO_ERROR);
 	}
 	if (!ft_check_args(argc, argv))
-		return (PHILO_ERROR);
+		return (0);
 	died = 0;
 	done = 0;
 	philo = ft_parse(argc, argv, &died);

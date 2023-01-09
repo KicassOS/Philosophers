@@ -6,7 +6,7 @@
 /*   By: pszleper < pszleper@student.42.fr >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 05:51:13 by pszleper          #+#    #+#             */
-/*   Updated: 2023/01/09 05:13:46 by pszleper         ###   ########.fr       */
+/*   Updated: 2023/01/09 09:54:46 by pszleper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ long	ft_time(struct timeval *time)
 
 /*
   this function makes the philosopher thread stop for i milliseconds
-
 */
 void	ft_sleep(int i)
 {
@@ -88,15 +87,16 @@ void	ft_free(t_philo *philo_ptr)
 {
 	t_philo	*current_philo;
 
-	pthread_mutex_destroy(philo_ptr->funeral);
+	if (!ft_destroy_mutexes(philo_ptr->funeral, philo_ptr->done_eating))
+		return ;
 	free(philo_ptr->funeral);
-	pthread_mutex_destroy(philo_ptr->done_eating);
 	free(philo_ptr->done_eating);
 	free(philo_ptr->time);
 	while (philo_ptr)
 	{
 		current_philo = philo_ptr;
-		pthread_mutex_destroy(philo_ptr->fork_r);
+		if (!ft_mutex_destroy(philo_ptr->fork_r))
+			return ;
 		free(philo_ptr->fork_r);
 		free(philo_ptr->tid);
 		free(philo_ptr->last_eat);

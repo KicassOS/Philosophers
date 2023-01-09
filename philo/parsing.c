@@ -6,7 +6,7 @@
 /*   By: pszleper < pszleper@student.42.fr >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 02:00:44 by pszleper          #+#    #+#             */
-/*   Updated: 2023/01/08 04:11:08 by pszleper         ###   ########.fr       */
+/*   Updated: 2023/01/09 10:39:15 by pszleper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
   This function iterates through philosophers and keeps initializing values
   Most importantly, it gives them their left fork
 */
-int	ft_part_two(int argc, char **argv, t_philo *philo)
+int	ft_init_time_left_fork(int argc, char **argv, t_philo *philo)
 {
 	t_philo			*temp;
 	t_philo			*temp2;
@@ -43,9 +43,9 @@ int	ft_part_two(int argc, char **argv, t_philo *philo)
 /*
   This function creates as many forks as there are philosophers
   It assigns it as a right fork to all, but that will be fixed
-  in ft_part_two
+  in ft_init_time_left_fork
 */
-int	ft_part_one(t_philo *philo, int k, int *died)
+int	ft_init_philo_forks(t_philo *philo, int k, int *died)
 {
 	t_philo	*tmp;
 	int		i;
@@ -83,7 +83,7 @@ int	ft_part_one(t_philo *philo, int k, int *died)
   Without the funeral mutex some messages would still be printed out
   after the first death
 */
-int	ft_part_three(t_philo *philo)
+int	ft_init_mutexes(t_philo *philo)
 {
 	pthread_mutex_t		*funeral;
 	pthread_mutex_t		*done_eating;
@@ -115,17 +115,17 @@ t_philo	*ft_parse(int argc, char **argv, int *died)
 	philo = malloc(sizeof(t_philo));
 	if (!philo)
 		return (NULL);
-	if (ft_part_one(philo, k, died))
+	if (ft_init_philo_forks(philo, k, died))
 	{
 		ft_free(philo);
 		return (NULL);
 	}
-	if (ft_part_two(argc, argv, philo))
+	if (ft_init_time_left_fork(argc, argv, philo))
 	{
 		ft_free(philo);
 		return (NULL);
 	}
-	if (ft_part_three(philo))
+	if (ft_init_mutexes(philo))
 	{
 		ft_free(philo);
 		return (NULL);
